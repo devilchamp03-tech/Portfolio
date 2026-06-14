@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zaeem Ahmed — Operations & Cloud Technology Leader</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #0F6E56;
+    --teal-light: #1D9E75;
+    --teal-glow: rgba(29,158,117,0.18);
+    --teal-glow2: rgba(29,158,117,0.08);
+    --navy: #060D1A;
+    --navy2: #0B1628;
+    --navy3: #0F1E35;
+    --card: rgba(15,30,53,0.85);
+    --card2: rgba(11,22,40,0.9);
+    --border: rgba(29,158,117,0.18);
+    --border2: rgba(255,255,255,0.07);
+    --text: #E8F4F0;
+    --text2: #8FAAA0;
+    --text3: #5C7A6E;
+    --white: #fff;
+    --accent2: #7F77DD;
+    --accent3: #378ADD;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--navy);
+    color: var(--text);
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* ── CANVAS BACKGROUND ── */
+  #bg-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .page-wrap { position: relative; z-index: 1; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(6,13,26,0.75);
+    backdrop-filter: blur(18px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--teal-light);
+    letter-spacing: -0.02em;
+  }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--text2);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal-light); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8rem 2rem 5rem;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--teal-glow2);
+    border: 0.5px solid var(--border);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 12px;
+    color: var(--teal-light);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal-light);
+    animation: pulse 2s infinite;
+  }
+
+  .hero-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(42px, 7vw, 80px);
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    animation: fadeUp 0.9s 0.1s ease both;
+  }
+  .hero-name span { color: var(--teal-light); }
+
+  .hero-title {
+    font-size: clamp(14px, 2vw, 18px);
+    color: var(--text2);
+    margin: 1.25rem 0 2rem;
+    max-width: 560px;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+
+  .hero-hook {
+    max-width: 680px;
+    font-size: clamp(15px, 1.8vw, 17px);
+    color: var(--text);
+    line-height: 1.8;
+    background: var(--teal-glow2);
+    border: 0.5px solid var(--border);
+    border-left: 3px solid var(--teal-light);
+    border-radius: 0 12px 12px 0;
+    padding: 1.25rem 1.75rem;
+    text-align: left;
+    margin-bottom: 2.5rem;
+    font-style: italic;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+
+  .hero-cta-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeUp 1s 0.4s ease both;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 28px;
+    background: var(--teal-light);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 0 0 var(--teal-glow);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px var(--teal-glow);
+  }
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 28px;
+    background: transparent;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 10px;
+    text-decoration: none;
+    border: 0.5px solid var(--border2);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--teal-light); color: var(--teal-light); }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 4rem;
+    animation: fadeUp 1s 0.5s ease both;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--teal-light);
+    line-height: 1;
+  }
+  .stat-label { font-size: 12px; color: var(--text3); letter-spacing: 0.05em; text-transform: uppercase; margin-top: 4px; }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 2rem; max-width: 1060px; margin: 0 auto; }
+
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 1rem;
+  }
+  .section-eyebrow::before {
+    content: '';
+    width: 24px; height: 1.5px;
+    background: var(--teal-light);
+  }
+
+  .section-heading {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(26px, 3.5vw, 40px);
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    line-height: 1.15;
+  }
+  .section-sub {
+    font-size: 15px;
+    color: var(--text2);
+    max-width: 520px;
+    margin-bottom: 3rem;
+  }
+
+  /* ── 3D PILLAR CARDS ── */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .pillar-card {
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(.23,1,.32,1), box-shadow 0.4s;
+    transform-style: preserve-3d;
+    cursor: default;
+    will-change: transform;
+  }
+  .pillar-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: radial-gradient(ellipse at 50% 0%, var(--teal-glow) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .pillar-card:hover::before { opacity: 1; }
+  .pillar-card:hover { box-shadow: 0 24px 64px rgba(0,0,0,0.45), 0 0 0 1px var(--teal-light); }
+
+  .pillar-icon-wrap {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    background: var(--teal-glow);
+    border: 0.5px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem;
+    font-size: 24px;
+  }
+  .pillar-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+  .pillar-card p { font-size: 14px; color: var(--text2); line-height: 1.7; }
+
+  .pillar-accent {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .pa-teal { background: linear-gradient(90deg, var(--teal-light), transparent); }
+  .pa-purple { background: linear-gradient(90deg, var(--accent2), transparent); }
+  .pa-blue { background: linear-gradient(90deg, var(--accent3), transparent); }
+
+  /* ── TIMELINE / EXPERIENCE ── */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1.5px;
+    background: linear-gradient(to bottom, var(--teal-light), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .timeline-item.visible { opacity: 1; transform: translateX(0); }
+
+  .timeline-dot {
+    position: absolute;
+    left: -2.4rem;
+    top: 6px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--teal-light);
+    border: 2px solid var(--navy);
+    box-shadow: 0 0 12px var(--teal-glow);
+  }
+
+  .tl-header {
+    background: var(--card2);
+    border: 0.5px solid var(--border);
+    border-radius: 16px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .tl-meta { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .tl-role {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--white);
+  }
+  .tl-date {
+    font-size: 12px;
+    color: var(--teal-light);
+    background: var(--teal-glow2);
+    border: 0.5px solid var(--border);
+    border-radius: 100px;
+    padding: 3px 12px;
+    white-space: nowrap;
+  }
+  .tl-company { font-size: 13px; color: var(--text2); margin-top: 3px; }
+
+  .sar-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .sar-cell {
+    background: var(--card2);
+    padding: 1.25rem;
+    position: relative;
+  }
+  .sar-cell:hover { background: rgba(15,30,53,0.95); }
+  .sar-tag2 {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .sar-tag2::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+  }
+  .s-tag { color: #1D9E75; }
+  .s-tag::before { background: #1D9E75; }
+  .a-tag { color: #7F77DD; }
+  .a-tag::before { background: #7F77DD; }
+  .r-tag { color: #378ADD; }
+  .r-tag::before { background: #378ADD; }
+  .sar-cell p { font-size: 13px; color: var(--text2); line-height: 1.65; }
+
+  /* ── SKILLS ── */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .skill-group {
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    border-radius: 16px;
+    padding: 1.25rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .skill-group:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.4); }
+  .skill-group-title {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 1rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag {
+    font-size: 12px;
+    padding: 4px 12px;
+    background: rgba(29,158,117,0.1);
+    border: 0.5px solid rgba(29,158,117,0.25);
+    border-radius: 100px;
+    color: var(--text);
+  }
+
+  /* ── CERTS ── */
+  .certs-row { display: flex; flex-wrap: wrap; gap: 16px; }
+  .cert-card {
+    flex: 1;
+    min-width: 220px;
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    border-radius: 16px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .cert-card::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 60px; height: 60px;
+    background: radial-gradient(circle at top right, var(--teal-glow), transparent 70%);
+  }
+  .cert-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.4); }
+  .cert-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: var(--teal-glow);
+    border: 0.5px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .cert-name { font-size: 14px; font-weight: 600; color: var(--white); }
+  .cert-issuer { font-size: 12px; color: var(--text3); margin-top: 2px; }
+
+  /* ── FUTURE ── */
+  .future-card {
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    border-radius: 24px;
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .future-card::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--teal-glow) 0%, transparent 70%);
+  }
+  .future-card p { font-size: 15px; color: var(--text2); line-height: 1.85; margin-bottom: 1.25rem; }
+  .future-card p:last-child { margin-bottom: 0; }
+  .future-card strong { color: var(--teal-light); font-weight: 600; }
+
+  /* ── CONTACT ── */
+  .contact-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 2rem; }
+  .contact-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    border-radius: 100px;
+    font-size: 13px;
+    color: var(--text);
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, box-shadow 0.2s;
+  }
+  .contact-pill:hover {
+    border-color: var(--teal-light);
+    color: var(--teal-light);
+    box-shadow: 0 0 16px var(--teal-glow);
+  }
+  .contact-pill svg { width: 16px; height: 16px; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 2.5rem;
+    font-size: 12px;
+    color: var(--text3);
+    border-top: 0.5px solid var(--border2);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { display: none; }
+    .sar-grid { grid-template-columns: 1fr; }
+    section { padding: 4rem 1.25rem; }
+    .future-card { padding: 1.75rem; }
+    .hero { padding: 7rem 1.25rem 4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ANIMATED PARTICLE BACKGROUND -->
+<canvas id="bg-canvas"></canvas>
+
+<div class="page-wrap">
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">ZA.</div>
+  <div class="nav-links">
+    <a href="#pillars">Expertise</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#future">Vision</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Available · Dubai, UAE · Immediate Joiner</div>
+  <h1 class="hero-name">Zaeem<br><span>Ahmed</span></h1>
+  <p class="hero-title">Logistics & Operations Analytics · AWS Certified Solutions Architect · MENA Region</p>
+  <div class="hero-hook">
+    I orchestrate the intersection of cloud-powered intelligence and large-scale logistics execution — translating raw network data into decisions that protect SLAs, eliminate operational drag, and accelerate delivery performance across complex, multi-market supply chains. As an AWS-certified professional with frontline experience scaling Amazon's North American and EU freight operations, I bring the technical rigor of a solutions architect and the ground-level instinct of an operations specialist into every transformation I lead.
+  </div>
+  <div class="hero-cta-row">
+    <a href="mailto:zaeemahmed03786@gmail.com" class="btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      Get in Touch
+    </a>
+    <a href="https://linkedin.com/in/zaeemahmed-ops" target="_blank" class="btn-secondary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn Profile
+    </a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">4+</div>
+      <div class="stat-label">Years in Ops</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">98%</div>
+      <div class="stat-label">Accuracy Rate</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">2</div>
+      <div class="stat-label">Continents Managed</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Onboarding Success</div>
+    </div>
+  </div>
+</div>
+
+<!-- PILLARS -->
+<section id="pillars">
+  <div class="section-eyebrow reveal">Pillars of Excellence</div>
+  <h2 class="section-heading reveal">Three dimensions of impact</h2>
+  <p class="section-sub reveal">Where cloud architecture meets operational execution — across scale, data, and transformation.</p>
+  <div class="pillars-grid">
+
+    <div class="pillar-card reveal" data-tilt>
+      <div class="pillar-icon-wrap">🚀</div>
+      <h3>Operational Scalability</h3>
+      <p>I have engineered operations across multi-continent freight networks — managing real-time linehaul movements for Amazon's NA and EU corridors while building process infrastructure that scales teams without sacrificing execution quality. My instinct is to design systems, not solve one-off problems: SOPs, Wiki knowledge hubs, and structured escalation frameworks that outlast any individual contributor.</p>
+      <div class="pillar-accent pa-teal"></div>
+    </div>
+
+    <div class="pillar-card reveal" data-tilt>
+      <div class="pillar-icon-wrap">📊</div>
+      <h3>Data-Driven Intelligence</h3>
+      <p>I leverage SQL, Power BI, and advanced Excel automation to transform fragmented shipment data into unified operational truth — enabling leadership to act before problems escalate into SLA failures. At Danube Home International, I built end-to-end MIS reporting that gave senior management a single source of truth across the entire UAE distribution network.</p>
+      <div class="pillar-accent pa-purple"></div>
+    </div>
+
+    <div class="pillar-card reveal" data-tilt>
+      <div class="pillar-icon-wrap">☁️</div>
+      <h3>Cloud-Optimized Execution</h3>
+      <p>As an AWS Certified Solutions Architect, I bridge the gap between cloud architecture and operational application — translating cloud principles into logistics process design, automation tooling, and data pipeline efficiency. This rare combination positions me to lead digital transformations where technical depth and operational credibility are equally non-negotiable.</p>
+      <div class="pillar-accent pa-blue"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-eyebrow reveal">Career Journey</div>
+  <h2 class="section-heading reveal">Signature projects</h2>
+  <p class="section-sub reveal">Situation · Action · Result — the real impact behind each role.</p>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="tl-header">
+        <div class="tl-meta">
+          <div class="tl-role">Logistics & Operations Analytics Coordinator</div>
+          <div class="tl-date">Dec 2025 – Present</div>
+        </div>
+        <div class="tl-company">Danube Home International · Dubai, UAE</div>
+      </div>
+      <div class="sar-grid">
+        <div class="sar-cell">
+          <div class="sar-tag2 s-tag">Situation</div>
+          <p>The UAE distribution network lacked a unified visibility layer — senior management relied on fragmented, manually assembled reports that obscured delivery performance and delayed corrective action on at-risk shipments.</p>
+        </div>
+        <div class="sar-cell">
+          <div class="sar-tag2 a-tag">Action</div>
+          <p>I architected a daily MIS reporting engine using SQL and Power BI, consolidating shipment volumes, SLA adherence, inventory movement, and delivery performance into a single dashboard, plus pre-delivery scheduling reports unifying route data and driver availability.</p>
+        </div>
+        <div class="sar-cell">
+          <div class="sar-tag2 r-tag">Result</div>
+          <p>Delivered a single source of operational truth for senior leadership, enabling faster interventions on at-risk deliveries, reduced last-minute scheduling conflicts, and measurably shorter delivery cycle times across the UAE network.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="tl-header">
+        <div class="tl-meta">
+          <div class="tl-role">Transportation Specialist — Relay Operations Centre (ROC)</div>
+          <div class="tl-date">Oct 2023 – Dec 2025</div>
+        </div>
+        <div class="tl-company">Amazon · Hyderabad, India</div>
+      </div>
+      <div class="sar-grid">
+        <div class="sar-cell">
+          <div class="sar-tag2 s-tag">Situation</div>
+          <p>Amazon's ROC team handled real-time freight exceptions across NA and EU at massive volume — but knowledge was siloed in individuals, onboarding was slow, and repetitive reporting tasks consumed analyst bandwidth that should have been directed at live operational decisions.</p>
+        </div>
+        <div class="sar-cell">
+          <div class="sar-tag2 a-tag">Action</div>
+          <p>I spearheaded a Wiki-based knowledge hub centralising SOPs, exception-handling playbooks, and escalation workflows. In parallel, I engineered an Excel macro automation tool and applied SQL to power deep-dive linehaul defect investigations presented directly to cross-functional stakeholders.</p>
+        </div>
+        <div class="sar-cell">
+          <div class="sar-tag2 r-tag">Result</div>
+          <p>Accelerated new associate ramp-up time, standardised team-wide execution quality, and materially improved case throughput. Recognised with multiple Employee of the Month awards and formal commendations from Fulfilment and Sort Centres across NA and EU.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="tl-header">
+        <div class="tl-meta">
+          <div class="tl-role">Logistics Operations Support — SDS Associate</div>
+          <div class="tl-date">Aug 2022 – Oct 2023</div>
+        </div>
+        <div class="tl-company">Amazon · Hyderabad, India</div>
+      </div>
+      <div class="sar-grid">
+        <div class="sar-cell">
+          <div class="sar-tag2 s-tag">Situation</div>
+          <p>A high-velocity last-mile support environment demanded sustained accuracy and resolution quality across 100–120 daily cases, while requiring SME mentorship for incoming associate cohorts without disrupting live operations.</p>
+        </div>
+        <div class="sar-cell">
+          <div class="sar-tag2 a-tag">Action</div>
+          <p>I maintained a 98% accuracy rate as the floor's go-to escalation expert while designing structured onboarding programs — building training modules and team-wide SOPs, treating each cohort as a process design challenge, not just a training task.</p>
+        </div>
+        <div class="sar-cell">
+          <div class="sar-tag2 r-tag">Result</div>
+          <p>Achieved a 100% graduation rate across all onboarding cohorts. Earned MVP and two Employee of the Month awards, directly accelerating promotion into the ROC Transportation Specialist role.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-eyebrow reveal">Technical Arsenal</div>
+  <h2 class="section-heading reveal">Skills & certifications</h2>
+  <p class="section-sub reveal">The tools I reach for when building intelligent, scalable operations.</p>
+
+  <div class="skills-grid reveal">
+    <div class="skill-group">
+      <div class="skill-group-title">Operations</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Last-Mile Logistics</span>
+        <span class="skill-tag">SLA Management</span>
+        <span class="skill-tag">ROC Systems</span>
+        <span class="skill-tag">KPI Dashboards</span>
+        <span class="skill-tag">Pre-Delivery Planning</span>
+        <span class="skill-tag">Root Cause Analysis</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Data & Analytics</div>
+      <div class="skill-tags">
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">Power BI</span>
+        <span class="skill-tag">Excel Macros</span>
+        <span class="skill-tag">MIS Reporting</span>
+        <span class="skill-tag">Defect Analysis</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Cloud & Tech</div>
+      <div class="skill-tags">
+        <span class="skill-tag">AWS (SAA-C03)</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">IoT / Raspberry Pi</span>
+        <span class="skill-tag">SOP Development</span>
+        <span class="skill-tag">Wiki Systems</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Methodologies</div>
+      <div class="skill-tags">
+        <span class="skill-tag">5S</span>
+        <span class="skill-tag">Process Improvement</span>
+        <span class="skill-tag">SME Coaching</span>
+        <span class="skill-tag">Cross-Functional Collab</span>
+        <span class="skill-tag">Escalation Ownership</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="certs-row reveal" style="margin-top: 2rem;">
+    <div class="cert-card">
+      <div class="cert-icon">☁️</div>
+      <div>
+        <div class="cert-name">AWS Certified Solutions Architect</div>
+        <div class="cert-issuer">Amazon Web Services</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🗄️</div>
+      <div>
+        <div class="cert-name">SQL for Data Analytics</div>
+        <div class="cert-issuer">Great Learning</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🔌</div>
+      <div>
+        <div class="cert-name">IoT Using Raspberry Pi</div>
+        <div class="cert-issuer">Pantech eLearning</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUTURE -->
+<section id="future">
+  <div class="section-eyebrow reveal">Looking Ahead</div>
+  <h2 class="section-heading reveal">Future-proof vision</h2>
+  <p class="section-sub reveal">Leading MENA's digital logistics transformation over the next five years.</p>
+  <div class="future-card reveal">
+    <p>The MENA region stands at an inflection point: Vision 2030 in Saudi Arabia, the UAE's National Strategy for Advanced Technology, and the rapid modernisation of regional logistics corridors are creating demand for leaders who can operate at the intersection of cloud infrastructure, supply chain intelligence, and large-scale operational execution. I am positioned precisely at that intersection.</p>
+    <p>Over the next five years, I intend to <strong>spearhead data-driven logistics modernisation</strong> across MENA — architecting SQL and cloud-native analytics layers that give regional operators the real-time visibility they need to compete with global supply chain benchmarks. With an AWS Certified Solutions Architect credential and a track record of delivering measurable impact at Amazon and Danube Home International, I bring both the technical depth and operational credibility to lead transformation that sticks.</p>
+    <p>My north star is building supply chains that are <strong>self-correcting, data-transparent, and scalable</strong> — where exceptions are caught before they cascade, scheduling is optimised by intelligence rather than instinct, and every stakeholder from the warehouse floor to the C-suite operates from a single, trusted source of operational truth.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-eyebrow reveal">Let's Connect</div>
+  <h2 class="section-heading reveal">Get in touch</h2>
+  <p class="section-sub reveal">Open to senior operations, analytics, and transformation roles across the MENA region.</p>
+  <div class="contact-row reveal">
+    <a href="mailto:zaeemahmed03786@gmail.com" class="contact-pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      zaeemahmed03786@gmail.com
+    </a>
+    <a href="tel:+918367528082" class="contact-pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 13.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3 2.84h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 10.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 18h.92z"/></svg>
+      +91 8367528082
+    </a>
+    <a href="https://linkedin.com/in/zaeemahmed-ops" target="_blank" class="contact-pill">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      linkedin.com/in/zaeemahmed-ops
+    </a>
+    <div class="contact-pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      Hyderabad, India · Open to Dubai
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Zaeem Ahmed · Logistics & Operations Analytics · AWS Certified · Built for LinkedIn
+</footer>
+
+</div><!-- end page-wrap -->
+
+<script>
+// ── PARTICLE CANVAS ──
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [], animId;
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+function Particle() {
+  this.x = Math.random() * W;
+  this.y = Math.random() * H;
+  this.vx = (Math.random() - 0.5) * 0.3;
+  this.vy = (Math.random() - 0.5) * 0.3;
+  this.r = Math.random() * 1.5 + 0.3;
+  this.a = Math.random() * 0.5 + 0.1;
+}
+
+for (let i = 0; i < 100; i++) particles.push(new Particle());
+
+let mx = W / 2, my = H / 2;
+window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+  particles.forEach(p => {
+    p.x += p.vx + (mx - W/2) * 0.00008;
+    p.y += p.vy + (my - H/2) * 0.00008;
+    if (p.x < 0) p.x = W;
+    if (p.x > W) p.x = 0;
+    if (p.y < 0) p.y = H;
+    if (p.y > H) p.y = 0;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(29,158,117,${p.a})`;
+    ctx.fill();
+  });
+
+  // draw lines between close particles
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const d = Math.sqrt(dx*dx + dy*dy);
+      if (d < 120) {
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.strokeStyle = `rgba(29,158,117,${0.12 * (1 - d/120)})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+  animId = requestAnimationFrame(draw);
+}
+draw();
+
+// ── 3D TILT ON PILLAR CARDS ──
+document.querySelectorAll('[data-tilt]').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const cx = rect.width / 2;
+    const cy = rect.height / 2;
+    const rotY = ((x - cx) / cx) * 10;
+    const rotX = -((y - cy) / cy) * 10;
+    card.style.transform = `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(8px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(900px) rotateX(0) rotateY(0) translateZ(0)';
+  });
+});
+
+// ── SCROLL REVEAL ──
+const revealEls = document.querySelectorAll('.reveal, .timeline-item');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(el => io.observe(el));
+
+// ── COUNTER ANIMATION ──
+function animateCount(el, target, suffix) {
+  let start = 0;
+  const duration = 1400;
+  const step = (ts) => {
+    if (!start) start = ts;
+    const progress = Math.min((ts - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(ease * target) + suffix;
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+const stats = document.querySelectorAll('.stat-num');
+const statsData = [
+  { target: 4, suffix: '+' },
+  { target: 98, suffix: '%' },
+  { target: 2, suffix: '' },
+  { target: 100, suffix: '%' },
+];
+const statsIo = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const i = [...stats].indexOf(e.target);
+      if (statsData[i]) animateCount(e.target, statsData[i].target, statsData[i].suffix);
+      statsIo.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+stats.forEach(s => statsIo.observe(s));
+</script>
+
+</body>
+</html>
